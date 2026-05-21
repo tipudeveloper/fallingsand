@@ -2,7 +2,7 @@ const { Application, Container, Sprite, Assets } = PIXI;
 
 (async () => {
   // Create a new application
-  const app = new PApplication();
+  const app = new Application();
 
   // Initialize the application
   await app.init({ background: '#1099bb', resizeTo: window });
