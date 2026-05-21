@@ -1,3 +1,4 @@
 # fallingsand
 falling sand website for fallingsand game
-available at tipudeveloper.github.io/fallingsand
+available at 
+[fallingsand](tipudeveloper.github.io/fallingsand)
