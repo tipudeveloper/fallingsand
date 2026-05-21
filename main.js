@@ -1,6 +1,8 @@
+const { Application, Container, Sprite, Assets } = PIXI;
+
 (async () => {
   // Create a new application
-  const app = new PIXI.Application();
+  const app = new PApplication();
 
   // Initialize the application
   await app.init({ background: '#1099bb', resizeTo: window });
@@ -9,16 +11,16 @@
   document.body.appendChild(app.canvas);
 
   // Create and add a container to the stage
-  const container = new PIXI.Container();
+  const container = new Container();
 
   app.stage.addChild(container);
 
   // Load the bunny texture
-  const texture = await PIXI.Assets.load('https://pixijs.com/assets/bunny.png');
+  const texture = await Assets.load('https://pixijs.com/assets/bunny.png');
 
   // Create a 5x5 grid of bunnies in the container
   for (let i = 0; i < 25; i++) {
-    const bunny = new PIXI.Sprite(texture);
+    const bunny = new Sprite(texture);
 
     bunny.x = (i % 5) * 40;
     bunny.y = Math.floor(i / 5) * 40;
