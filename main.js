@@ -1,43 +1,39 @@
 const { Application, Container, Sprite, Assets } = PIXI;
 
 (async () => {
-  const app = new Application(); // create the app
+  // Create a PixiJS application.
+  const app = new Application();
 
-  // Initialize the application
+  // Intialize the application.
   await app.init({ background: '#1099bb', resizeTo: window });
 
-  // Append the application canvas to the document body
+  // Then adding the application's canvas to the DOM body.
   document.body.appendChild(app.canvas);
 
-  // Create and add a container to the stage
-  const container = new Container();
-
-  app.stage.addChild(container);
-
-  // Load the bunny texture
+  // Load the bunny texture.
   const texture = await Assets.load('https://pixijs.com/assets/bunny.png');
 
-  // Create a 5x5 grid of bunnies in the container
-  for (let i = 0; i < 25; i++) {
-    const bunny = new Sprite(texture);
+  // Create a new Sprite from an image path.
+  const bunny = new Sprite(texture);
 
-    bunny.x = (i % 5) * 40;
-    bunny.y = Math.floor(i / 5) * 40;
-    container.addChild(bunny);
-  }
+  // Add to stage.
+  app.stage.addChild(bunny);
 
-  // Move the container to the center
-  container.x = app.screen.width / 2;
-  container.y = app.screen.height / 2;
+  // Center the sprite's anchor point.
+  bunny.anchor.set(0.5);
 
-  // Center the bunny sprites in local container coordinates
-  container.pivot.x = container.width / 2;
-  container.pivot.y = container.height / 2;
+  // Move the sprite to the center of the screen.
+  bunny.x = app.screen.width / 2;
+  bunny.y = app.screen.height / 2;
 
-  // Listen for animate update
+  // Add an animation loop callback to the application's ticker.
   app.ticker.add((time) => {
-    // Continuously rotate the container!
-    // * use delta to create frame-independent transform *
-    container.rotation -= 0.01 * time.deltaTime;
+    /**
+     * Just for fun, let's rotate mr rabbit a little.
+     * Time is a Ticker object which holds time related data.
+     * Here we use deltaTime, which is the time elapsed between the frame callbacks
+     * to create frame-independent transformation. Keeping the speed consistent.
+     */
+    bunny.rotation += 0.1 * time.deltaTime;
   });
 })();
